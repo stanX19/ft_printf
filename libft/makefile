@@ -3,7 +3,7 @@ NAME = libft.a
 SRC_DIR = ./
 SRC = $(addprefix $(SRC_DIR)ft_, \
 		$(addsuffix .c, \
-		putchar putnbr putnbr_base putstr))
+		putchar putnbr putnbr_base putstr make))
 
 OBJ = $(SRC:%.c=%.o)
 
