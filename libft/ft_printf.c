@@ -28,13 +28,16 @@ static void	print_format(char c, va_list argv, size_t* len)
 	else if (c == 's')
 		ft_putstr(va_arg(argv, char*), len);
 	else if (c == 'p')
-		ft_putnbr_base((long)va_arg(argv, void*), "0123456789abcdefg", len);
+	{
+		ft_putstr("0x", len);
+		ft_putnbr_base((long)va_arg(argv, void*), "0123456789abcdef", len);
+	}
 	else if (c == 'u')
 		ft_putnbr((long int)va_arg(argv, unsigned int), len);
 	else if (c == 'x')
-		ft_putnbr_base(va_arg(argv, int), "0123456789abcdefg", len);
+		ft_putnbr_base((long int)va_arg(argv, unsigned int), "0123456789abcdef", len);
 	else if (c == 'X')
-		ft_putnbr_base(va_arg(argv, int), "0123456789ABCDEFG", len);
+		ft_putnbr_base((long int)va_arg(argv, unsigned int), "0123456789ABCDEF", len);
 	else if (c == '%')
 		ft_putchar('%', len);
 }
@@ -51,9 +54,10 @@ size_t	ft_printf(char* str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-			print_format(str[i + 1], argv, &len);
+			print_format(str[++i], argv, &len);
 		else
 			ft_putchar(str[i], &len);
+		i++;
 	}
 	va_end(argv);
 	return len;

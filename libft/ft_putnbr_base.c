@@ -22,6 +22,13 @@ static int	is_valid(char* base, int basenbr)
 	return (1);
 }
 
+static void	recur(long int nbr, char* base, int basenbr, size_t* len)
+{
+	if (nbr >= basenbr)
+		recur(nbr / basenbr, base, basenbr, len);
+	ft_putchar(base[nbr % basenbr], len);
+}
+
 void	ft_putnbr_base(long int nbr, char* base, size_t*len)
 {
 	int			basenbr;
@@ -36,7 +43,5 @@ void	ft_putnbr_base(long int nbr, char* base, size_t*len)
 		ft_putchar('-', len);
 		nbr = -nbr;
 	}
-	if (nbr >= basenbr)
-		ft_putnbr_base(nbr / basenbr, base, len);
-	ft_putchar(base[nbr % basenbr], len);
+	recur(nbr, base, basenbr, len);
 }

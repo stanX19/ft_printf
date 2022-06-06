@@ -14,25 +14,25 @@ LIBCR = ar -rcs
 
 HEADER = ft_printf.h
 
-run: fclean all
-	$(CC) $(CFLAGS) $(NAME) main.c && ./a.out
+run: re
+	@$(CC) $(CFLAGS) main.c -Ll $(NAME) && ./a.out
 
 all: $(NAME) $(HEADER)
 
 $(NAME): $(OBJ)
-	$(LIBCR) $(NAME) $(OBJ)
+	@$(LIBCR) $(NAME) $(OBJ)
 
 $(HEADER): libft/libft.h
-	cp -R $< $@
+	@cp -R $< $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	
 clean:
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME) $(HEADER)
+	@$(RM) $(NAME) $(HEADER)
 
 re: fclean all
 
