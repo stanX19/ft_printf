@@ -1,23 +1,14 @@
-#include "libft.h"
+#include "../ft_printf.h"
 
-//static int	count_args(char* str)
-//{
-//	int i;
-//	int ret;
-//
-//	i = 0;
-//	ret = 0;
-//	while (str[i])
-//	{
-//		if (str[i++] == '%')
-//		{
-//			ret++;
-//			if (str[i])
-//				i++;
-//		}
-//	}
-//	return ret;
-//}
+static void print_ptr(unsigned long int ptr, size_t *len)
+{
+	char *base;
+
+	base = "0123456789abcdef";
+	if (ptr >= 16)
+		print_ptr(ptr / 16, len);
+	ft_putchar(base[ptr % 16], len);
+}
 
 static void	print_format(char c, va_list argv, size_t* len)
 {
@@ -30,19 +21,19 @@ static void	print_format(char c, va_list argv, size_t* len)
 	else if (c == 'p')
 	{
 		ft_putstr("0x", len);
-		ft_putnbr_base((long)va_arg(argv, void*), "0123456789abcdef", len);
+		print_ptr(va_arg(argv, unsigned long int), len);
 	}
 	else if (c == 'u')
 		ft_putnbr((long int)va_arg(argv, unsigned int), len);
 	else if (c == 'x')
-		ft_putnbr_base((long int)va_arg(argv, unsigned int), "0123456789abcdef", len);
+		ft_putnbr_base((long long int)va_arg(argv, unsigned int), "0123456789abcdef", len);
 	else if (c == 'X')
-		ft_putnbr_base((long int)va_arg(argv, unsigned int), "0123456789ABCDEF", len);
+		ft_putnbr_base((long long int)va_arg(argv, unsigned int), "0123456789ABCDEF", len);
 	else if (c == '%')
 		ft_putchar('%', len);
 }
 
-size_t	ft_printf(char* str, ...)
+size_t	ft_printf(const char* str, ...)
 {
 	size_t i;
 	size_t len;

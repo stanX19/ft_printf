@@ -1,12 +1,10 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
+#include <stdint.h>
 
-int main()
-{
-	int len;
-	int x = -111;
-	len = ft_printf("%%%%%%%p\n", &x);
-	printf("%i\n", len == printf("%%%%%%%p\n", &x));
-	//ft_printf("%i", len);
-	(void)len;
+int main(){
+    unsigned long int x = __LONG_MAX__;
+    ft_printf("%p\n", x);
+    printf("%p\n", x);
 }

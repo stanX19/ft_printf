@@ -1,42 +1,37 @@
-NAME = libftprintf.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ytuan-ju <ytuan-ju@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/08/12 22:24:42 by ytuan-ju          #+#    #+#              #
+#    Updated: 2022/05/26 15:34:28 by ytuan-ju         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC_DIR = libft/
-SRC = $(addprefix $(SRC_DIR)ft_, \
-		$(addsuffix .c, \
-		putchar putnbr putnbr_base putstr printf))
+SRCDIR	= srcs/
+SRCS	=	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, \
+		printf putchar putnbr_base putnbr putstr))
 
-OBJ = $(SRC:%.c=%.o)
+OBJS	=	$(SRCS:.c=.o)
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CC			= 	gcc
+CFLAGS		=	-Wall -Wextra -Werror
+RM			=	rm -f
 
-LIBCR = ar -rcs
+NAME	=	libftprintf.a
 
-HEADER = ft_printf.h
+all:		$(NAME)
 
-run: re
-	@$(CC) $(CFLAGS) main.c -Ll $(NAME) && ./a.out
+$(NAME):	$(OBJS)
+					ar rcs $(NAME) $(OBJS)
 
-all: $(NAME) $(HEADER)
-
-$(NAME): $(OBJ)
-	@$(LIBCR) $(NAME) $(OBJ)
-
-$(HEADER): libft/libft.h
-	@cp -R $< $@
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
-	
 clean:
-	@$(RM) $(OBJ)
+					$(RM) $(OBJS)
 
-fclean: clean
-	@$(RM) $(NAME) $(HEADER)
+fclean:		clean
+					$(RM) $(NAME)
+re:						fclean $(NAME)
 
-re: fclean all
-
-norm:
-	norminette -R CheckForbiddenSourceHeader $(SRC) $(B_SRC) ./libft.h
-
-.PHONY: all clean fclean re norme bonus
+.PHONY:			all clean fclean re .c.o
