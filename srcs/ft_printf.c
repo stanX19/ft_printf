@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 static void print_ptr(unsigned long int ptr, size_t *len)
 {
