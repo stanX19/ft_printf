@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static void read_double_format(char* format, int* len, int* decimal) {
+static inline void read_double_format(char* format, int* len, int* decimal) {
     int i;
 
     *len = 0;
@@ -17,18 +17,19 @@ static void read_double_format(char* format, int* len, int* decimal) {
     }
 }
 
-static void add_decimal(int* idx, char* buf, double val, int decimal) {
+static inline void add_decimal(int* idx, char* buf, long double val, int decimal) {
     unsigned long long int store;
     unsigned long long int place;
     int i;
     char temp;
 
     i = -1;
-    place = 1;
+    place = 10;
     while (++i < decimal)
         place *= 10;
-    val -= (int)val;
-    store = val * place;
+    store = (val - (int)val) * place;
+    if (store % 10 > 4)
+        store += 10;
     buf[(*idx)++] = '.';
     while (decimal-- > 0 && place > 9)
     {
@@ -38,15 +39,10 @@ static void add_decimal(int* idx, char* buf, double val, int decimal) {
     }
 }
 
-static void add_intiger(int* idx, char* buf, int val)
-{
+static inline void add_intiger(int* idx, char* buf, int val) {
     int place;
 
     place = 1;
-    if (val < 0) {
-        val = -val;
-        buf[(*idx)++] = '-';
-    }
     while (place * 10 < val)
         place *= 10;
     while (place > 0) {
@@ -55,14 +51,19 @@ static void add_intiger(int* idx, char* buf, int val)
     }
 }
 
-void print_double(char* format, double val, size_t* len) {
+void print_double(char* format, long double val, size_t*len) {
     int idx;
-    char buf[1000];
+    char buf[100000];
     int length;
     int decimal;
 
     read_double_format(format, &length, &decimal);
     idx = 0;
+    if (val < 0)
+    {
+        val = -val;
+        buf[idx++] = '-';
+    }
     add_intiger(&idx, buf, val);
     if (decimal)
         add_decimal(&idx, buf, val, decimal);

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static void print_ptr(unsigned long int ptr, size_t *len)
+static void print_ptr(unsigned long long int ptr, size_t *len)
 {
 	char *base;
 
