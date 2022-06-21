@@ -1,7 +1,8 @@
 SRCDIR	= srcs/
 SRCS	=	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, \
 		printf putchar putnbr_base putnbr putstr\
-		print_double))
+		print_double get_double \
+		strdup))
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -11,6 +12,9 @@ RM			=	rm -rf
 TESTDIR = printfTester
 TESTGIT = https://github.com/Tripouille/printfTester.git
 NAME	= libftprintf.a
+
+run: all
+	$(CC) -I. $(CFLAGS) main.c $(NAME) && ./a.out
 
 all: $(NAME)
 
@@ -24,6 +28,7 @@ clean:
 fclean:	clean
 	$(RM) $(NAME)
 	$(RM) $(TESTDIR)
+	$(RM) ./a.out
 re:	fclean $(NAME)
 
 test: $(TESTDIR)
