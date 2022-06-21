@@ -1,6 +1,7 @@
 SRCDIR	= srcs/
 SRCS	=	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, \
-		printf putchar putnbr_base putnbr putstr))
+		printf putchar putnbr_base putnbr putstr\
+		print_double))
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -15,7 +16,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
-
+%.o:%.c
+	$(CC) -I. $(CFLAGS) $< -c -o $@
 clean:
 	$(RM) $(OBJS)
 

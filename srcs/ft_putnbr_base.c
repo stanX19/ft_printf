@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 static int	is_valid(char* base, int basenbr)
 {
