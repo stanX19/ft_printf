@@ -2,7 +2,7 @@ SRCDIR	= srcs/
 SRCS	=	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, \
 		printf putchar putnbr_base putnbr putstr\
 		print_double get_double \
-		strdup))
+		strdup strlen))
 
 OBJS	=	$(SRCS:.c=.o)
 

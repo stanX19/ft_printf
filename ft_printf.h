@@ -9,8 +9,9 @@ void	ft_putstr(char* str, size_t *len);
 void	ft_putnbr_base(long long int nbr, char* base, size_t *len);
 void	ft_putnbr(long int nb, size_t *len);
 char*	get_double(int decimal, long double val);
-void	print_double(char* format_str, long double val);
+void	print_double(char* format_str, long double val, size_t* len);
 char*	ft_strdup(const char* s);
+size_t	ft_strlen(const char* s);
 size_t	ft_printf(const char *str, ...);
 
 typedef union {

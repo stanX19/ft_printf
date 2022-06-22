@@ -4,5 +4,9 @@
 #include <stdint.h>
 
 int main(){
-    print_double(" +14", 23.43);
+    size_t len;
+
+    len = 0;
+    print_double(" -50.2f", -23.436, &len);
+    ft_printf("$\n%i\n", len);
 }
