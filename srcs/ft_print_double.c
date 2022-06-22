@@ -38,20 +38,17 @@ static struct s2_format read_format(char* format_str) {
     return ret;
 }
 
-#include <stdio.h>
-
 void print_double(char* format_str, long double val, size_t* len) {
     struct s2_format format;
-    char* ret;
-   
+    char buf[10000];
+
     format = read_format(format_str);
-    ret = get_double(format.precicion, val);
     if (val < 0.0)
         format.positive = "";
-    format.len -= ft_strlen(ret) + ft_strlen(format.positive);
+    format.len -= get_double(format.precicion, val, buf) + ft_strlen(format.positive);
     if (format.left) {
         ft_putstr(format.positive, len);
-        ft_putstr(ret, len);
+        ft_putstr(buf, len);
         while (format.len-- > 0)
             ft_putchar(' ', len);
     }
@@ -59,7 +56,6 @@ void print_double(char* format_str, long double val, size_t* len) {
         while (format.len-- > 0)
             ft_putchar(' ', len);
         ft_putstr(format.positive, len);
-        ft_putstr(ret, len);
+        ft_putstr(buf, len);
     }
-    free(ret);
 }

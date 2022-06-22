@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static inline void add_decimal(int* idx, char* buf, long double val, int decimal) {
+static inline void add_decimal(size_t* idx, char* buf, long double val, int decimal) {
     unsigned long long int store;
     unsigned long long int place;
     int i;
@@ -22,7 +22,7 @@ static inline void add_decimal(int* idx, char* buf, long double val, int decimal
     }
 }
 
-static inline void add_intiger(int* idx, char* buf, int val) {
+static inline void add_intiger(size_t* idx, char* buf, int val) {
     int place;
 
     place = 1;
@@ -34,9 +34,8 @@ static inline void add_intiger(int* idx, char* buf, int val) {
     }
 }
 
-char* get_double(int decimal, long double val) {
-    int idx;
-    char buf[100000];
+size_t get_double(int decimal, long double val, char *buf) {
+    size_t idx;
 
     idx = 0;
     if (val < 0)
@@ -48,5 +47,5 @@ char* get_double(int decimal, long double val) {
     if (decimal)
         add_decimal(&idx, buf, val, decimal);
     buf[idx] = 0;
-    return ft_strdup(buf);
+    return idx;
 }

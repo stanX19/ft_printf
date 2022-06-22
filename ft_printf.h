@@ -8,7 +8,7 @@ void	ft_putchar(char c, size_t *len);
 void	ft_putstr(char* str, size_t *len);
 void	ft_putnbr_base(long long int nbr, char* base, size_t *len);
 void	ft_putnbr(long int nb, size_t *len);
-char*	get_double(int decimal, long double val);
+size_t	get_double(int decimal, long double val, char*buf);
 void	print_double(char* format_str, long double val, size_t* len);
 char*	ft_strdup(const char* s);
 size_t	ft_strlen(const char* s);

@@ -5,8 +5,9 @@
 
 int main(){
     size_t len;
-
+    long double x = -24323.436;
     len = 0;
-    print_double(" -50.2f", -23.436, &len);
+    printf("% -7.18Lf$\n", x);
+    print_double(" -7.18f", x, &len);
     ft_printf("$\n%i\n", len);
 }
