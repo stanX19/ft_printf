@@ -9,5 +9,5 @@ int main(){
     len = 0;
     printf("% -7.18Lf$\n", x);
     print_double(" -7.18f", x, &len);
-    ft_printf("$\n%i\n", len);
+    printf("$\n%i\n", format_match("llui", "lluia"));
 }

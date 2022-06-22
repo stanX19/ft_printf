@@ -34,7 +34,7 @@ static inline void add_intiger(size_t* idx, char* buf, int val) {
     }
 }
 
-size_t get_double(int decimal, long double val, char *buf) {
+size_t get_double(format_t format, long double val, char *buf) {
     size_t idx;
 
     idx = 0;
@@ -44,8 +44,8 @@ size_t get_double(int decimal, long double val, char *buf) {
         buf[idx++] = '-';
     }
     add_intiger(&idx, buf, val);
-    if (decimal)
-        add_decimal(&idx, buf, val, decimal);
+    if (format.precicion)
+        add_decimal(&idx, buf, val, format.precicion);
     buf[idx] = 0;
     return idx;
 }
