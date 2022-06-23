@@ -4,12 +4,10 @@
 #include <stdint.h>
 
 int main(){
-    size_t len;
-    long double x = 9007199254740992;
+    unsigned int x = 4294967295;
     char* str;
 
-    len = 0;
-    str = "|% -100.100Lf|\n";
+    str = "|%100.40u|\n";
     printf(str, x);
     ft_printf(str, x);
 }

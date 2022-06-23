@@ -1,11 +1,11 @@
 #include "ft_printf.h"
 
-void print_double(format_t format, va_list argv, size_t* len)
+void print_long_double(format_t format, va_list argv, size_t* len)
 {
 	long double val;
 	char buf[32700];
 
-	val = va_arg(argv, double);
+	val = va_arg(argv, long double);
 	format.len -= get_double(format, val, buf);
 	if (format.left) {
 		ft_putstr(buf, len);

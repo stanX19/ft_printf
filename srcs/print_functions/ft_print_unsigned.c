@@ -1,12 +1,12 @@
 #include "ft_printf.h"
 
-void print_long_long_int(format_t format, va_list argv, size_t* len)
+void print_unsigned(format_t format, va_list argv, size_t* len)
 {
-	long long int val;
+	unsigned int val;
     char buf[32700];
 
-    val = va_arg(argv, long long int);
-    format.len -= get_int(format, val, buf);
+    val = va_arg(argv, unsigned int);
+    format.len -= get_unsigned(format, val, buf);
     if (format.left)
 	{
         ft_putstr(buf, len);

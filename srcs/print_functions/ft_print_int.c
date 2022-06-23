@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
 void print_int(format_t format, va_list argv, size_t* len)
 {
