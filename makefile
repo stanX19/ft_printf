@@ -1,11 +1,18 @@
 SRCDIR	= srcs/
-SRCS	=	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, \
-		printf \
-		print_double print_percent print_char\
-		read_format format_match get_double \
-		strdup strlen strcpy putchar putnbr_base putnbr putstr))
+FUNC	= print_functions/
+UTILS	= utils/
+SHARED	= shared/
+SRCS	=	$(addsuffix .c, \
+		$(addprefix $(SRCDIR)ft_, \
+			printf read_format format_match) \
+		$(addprefix $(SRCDIR)$(FUNC)ft_, \
+			print_double print_percent print_char print_int print_long_int print_long_long_int)\
+		$(addprefix $(SRCDIR)$(SHARED)ft_, \
+			get_int)\
+		$(addprefix $(SRCDIR)$(UTILS)ft_, \
+			strdup strlen strcpy putchar putnbr_base putstr))
 
-OBJS	=	$(SRCS:.c=.o)
+OBJS	=	$(subst .c,.o,$(SRCS))
 
 CC			= 	gcc
 CFLAGS		=	-Wall -Wextra -Werror
@@ -22,7 +29,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 %.o:%.c
-	@$(CC) -I. $(CFLAGS) $< -c -o $@
+	$(CC) -I. $(CFLAGS) $< -c -o $@
 clean:
 	@$(RM) $(OBJS)
 

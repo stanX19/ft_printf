@@ -1,10 +1,12 @@
 #include "ft_printf.h"
-#define F_COUNT 2
+#define F_COUNT 6
 
 static void assign(char strs[F_COUNT][5], void (*funcs[F_COUNT])(), char*str, funcptr func)
 {
     static int idx;
 
+    if (idx >= F_COUNT)
+        return ;
     ft_strcpy(strs[idx], str);
     funcs[idx] = func;
     idx++;
@@ -14,6 +16,10 @@ static void format_init(char strs[F_COUNT][5], void (*funcs[F_COUNT])())
 {
     assign(strs, funcs, "c", print_char);
     assign(strs, funcs, "f", print_double);
+    assign(strs, funcs, "Lf", print_double);
+    assign(strs, funcs, "i", print_int);
+    assign(strs, funcs, "li", print_long_int);
+    assign(strs, funcs, "lli", print_long_int);
 }
 
 funcptr match_function(char* format_str, size_t *idx){
@@ -63,9 +69,9 @@ format_t read_format(char* format_str, size_t *idx)
     
     format.len = 0;
     format.precicion = 6;
-    (*idx) = -1;
     format.positive = "";
     format.left = 0;
+    (*idx) = -1;
     read_format1(&format, format_str, idx);
     while (format_str[(*idx)] && format_str[(*idx)] >= '0' && format_str[(*idx)] <= '9')
         format.len = format.len * 10 + format_str[(*idx)++] - 48;

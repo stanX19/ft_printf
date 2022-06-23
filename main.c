@@ -5,8 +5,11 @@
 
 int main(){
     size_t len;
-    long double x = -24323.436;
+    int x = -24323;
+    char* str;
+
     len = 0;
-    printf("% -7.18Lf$\n", x);
-    ft_printf("$\n|%2c|\n", 'F');
+    str = "|% -100.66lli|\n";
+    printf(str, x);
+    ft_printf("|% -100.66lli|\n", x);
 }
