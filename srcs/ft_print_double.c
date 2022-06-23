@@ -1,15 +1,13 @@
 #include "ft_printf.h"
 
-void print_double(char* format_str, long double val, size_t* len) {
-    format_t format;
+void print_double(format_t format, va_list argv, size_t* len)
+{
+    long double val;
     char buf[32700];
 
-    format = read_format(format_str);
-    if (val < 0.0)
-        format.positive = "";
-    format.len -= get_double(format, val, buf) + ft_strlen(format.positive);
+    val = va_arg(argv, long double);
+    format.len -= get_double(format, val, buf);
     if (format.left) {
-        ft_putstr(format.positive, len);
         ft_putstr(buf, len);
         while (format.len-- > 0)
             ft_putchar(' ', len);
@@ -17,7 +15,6 @@ void print_double(char* format_str, long double val, size_t* len) {
     else {
         while (format.len-- > 0)
             ft_putchar(' ', len);
-        ft_putstr(format.positive, len);
         ft_putstr(buf, len);
     }
 }

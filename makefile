@@ -1,9 +1,9 @@
 SRCDIR	= srcs/
 SRCS	=	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, \
-		printf putchar putnbr_base putnbr putstr str_matches\
-		print_double get_double \
-		read_format \
-		strdup strlen))
+		printf \
+		print_double print_percent print_char\
+		read_format format_match get_double \
+		strdup strlen strcpy putchar putnbr_base putnbr putstr))
 
 OBJS	=	$(SRCS:.c=.o)
 

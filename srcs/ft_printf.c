@@ -35,15 +35,12 @@
 
 static size_t	print_format(char *format_str, va_list argv, size_t* len)
 {
-	size_t idx;
-	format_t format;
+	size_t		idx;
+	format_t	format;
 
-	idx = 0;
-	format = read_format(format_str);
-	(void)argv;
-	(void)format;
-	(void)len;
-	return ++idx;
+	format = read_format(format_str, &idx);
+	format.func(format, argv, len);
+	return idx;
 }
 
 size_t	ft_printf(const char* str, ...)
