@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-
+#include <stdio.h>
 static inline void add_decimal(size_t* idx, char* buf, long double val, int decimal) {
     unsigned long long int store;
     unsigned long long int place;
@@ -22,8 +22,8 @@ static inline void add_decimal(size_t* idx, char* buf, long double val, int deci
     }
 }
 
-static inline void add_intiger(size_t* idx, char* buf, int val) {
-    int place;
+static inline void add_intiger(size_t* idx, char* buf, long long unsigned int val) {
+    long long unsigned int place;
 
     place = 1;
     while (place * 10 < val)

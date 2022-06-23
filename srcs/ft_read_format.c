@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-#define F_COUNT 6
+#define F_COUNT 7
 
 static void assign(char strs[F_COUNT][5], void (*funcs[F_COUNT])(), char*str, funcptr func)
 {
@@ -17,6 +17,7 @@ static void format_init(char strs[F_COUNT][5], void (*funcs[F_COUNT])())
     assign(strs, funcs, "c", print_char);
     assign(strs, funcs, "f", print_double);
     assign(strs, funcs, "Lf", print_double);
+    assign(strs, funcs, "d", print_int);
     assign(strs, funcs, "i", print_int);
     assign(strs, funcs, "li", print_long_int);
     assign(strs, funcs, "lli", print_long_int);
