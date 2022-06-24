@@ -4,10 +4,10 @@
 #include <stdint.h>
 
 int main(){
-    unsigned int x = 4294967295;
+    char* x = 0;
     char* str;
 
-    str = "|%100.40u|\n";
+    str = "|%100.4s|\n";
     printf(str, x);
     ft_printf(str, x);
 }

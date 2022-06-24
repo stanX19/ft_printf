@@ -31,7 +31,7 @@ $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 %.o:%.c
 	$(CC) -I. $(CFLAGS) $< -c -o $@
-	@echo -n "\033[1A\033[2K"
+	@echo "\033[1A\033[2K\033[1A"
 clean:
 	@$(RM) $(OBJS)
 

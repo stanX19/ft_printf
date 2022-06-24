@@ -2,7 +2,7 @@
 
 void print_double(format_t format, va_list argv, size_t* len)
 {
-	long double val;
+	double val;
 	char buf[32700];
 
 	val = va_arg(argv, double);

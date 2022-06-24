@@ -20,7 +20,7 @@ void		ft_putnbr_base(long long int nbr, char* base, size_t *len);
 char*		ft_strdup(const char* s);
 size_t		ft_strlen(const char* s);
 char*		ft_strcpy(char * dst, const char * src);
-char*		ft_strncpy(char* dst, const char* src, size_t n);
+char*		ft_strncpy(char* dst, char* src, size_t n);
 
 void 		print_double(format_t format, va_list argv, size_t* len);
 void 		print_long_double(format_t format, va_list argv, size_t* len);

@@ -2,7 +2,7 @@
 
 void print_long_int(format_t format, va_list argv, size_t* len)
 {
-	long long int val;
+	long int val;
     char buf[32700];
 
     val = va_arg(argv, long int);
