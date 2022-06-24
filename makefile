@@ -34,7 +34,7 @@ $(NAME): $(OBJS)
 	@echo "\033[1A\033[2K\033[1A"
 clean:
 	@$(RM) $(OBJS)
-
+	
 fclean:	clean
 	$(RM) $(NAME)
 	$(RM) $(TESTDIR)
