@@ -23,6 +23,7 @@ static void format_init(char strs[F_COUNT][5], void (*funcs[F_COUNT])())
     assign(strs, funcs, "li", print_long_int);
     assign(strs, funcs, "lli", print_long_int);
     assign(strs, funcs, "u", print_unsigned);
+    assign(strs, funcs, "p", print_pointer);
 }
 
 funcptr match_function(char* format_str, size_t *idx){
@@ -71,7 +72,7 @@ format_t read_format(char* format_str, size_t *idx)
     format_t format;
     
     format.len = 0;
-    format.precicion = 6;
+    format.precicion = -1;
     format.positive = "";
     format.left = 0;
     (*idx) = -1;

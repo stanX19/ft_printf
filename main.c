@@ -4,10 +4,11 @@
 #include <stdint.h>
 
 int main(){
-    char* x = 0;
-    char* str;
+    char* s2 = 0;
+    //unsigned long int x = 0;
+    //char* str;
 
-    str = "|%100.4s|\n";
-    printf(str, x);
-    ft_printf(str, x);
+    //str = "|%s|%p|%p|\n";
+    printf("| %s %s |\n", s2, s2);
+    ft_printf("| %s %s |", s2, s2);
 }

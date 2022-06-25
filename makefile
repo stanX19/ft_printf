@@ -7,16 +7,16 @@ SRCS	=	$(addsuffix .c, \
 			printf read_format format_match) \
 		$(addprefix $(SRCDIR)$(FUNC)ft_, \
 			print_double print_long_double print_percent print_char print_int print_long_int print_long_long_int \
-			print_str print_unsigned)\
+			print_str print_unsigned print_pointer)\
 		$(addprefix $(SRCDIR)$(SHARED)ft_, \
-			get_int get_double get_unsigned)\
+			get_int get_double get_unsigned get_nbr_base)\
 		$(addprefix $(SRCDIR)$(UTILS)ft_, \
 			strdup strlen strcpy strncpy putchar putnbr_base putstr))
 
 OBJS	=	$(subst .c,.o,$(SRCS))
 
 CC			= 	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
 RM			=	rm -rf
 TESTDIR = printfTester
 TESTGIT = https://github.com/Tripouille/printfTester.git
@@ -24,7 +24,7 @@ NAME	= libftprintf.a
 
 run: all
 	$(CC) -I. $(CFLAGS) main.c $(NAME) && ./a.out
-
+bonus: all
 all: $(NAME)
 
 $(NAME): $(OBJS)

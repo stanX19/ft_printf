@@ -15,6 +15,7 @@ size_t	get_int(format_t format, long long int nbr, char*buf)
 	size_t	idx;
 
 	idx = 0;
+	idx2 = 0;
 	val = nbr;
 	if (nbr < 0)
 	{
@@ -29,6 +30,5 @@ size_t	get_int(format_t format, long long int nbr, char*buf)
 	while (format.precicion-- > 0)
 		buf[idx++] = '0';
 	ft_strcpy(buf + idx, nbr_str);
-	buf[idx + idx2] = 0;
 	return idx + idx2;
 }

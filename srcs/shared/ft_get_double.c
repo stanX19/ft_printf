@@ -46,6 +46,8 @@ size_t get_double(format_t format, long double val, char* buf) {
     else if (format.positive[0])
         buf[idx++] = format.positive[0];
     add_intiger(&idx, buf, val);
+    if (format.precicion == -1)
+        format.precicion = 6;
     if (format.precicion)
         add_decimal(&idx, buf, val, format.precicion);
     buf[idx] = 0;
