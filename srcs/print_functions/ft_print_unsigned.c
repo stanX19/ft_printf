@@ -6,7 +6,7 @@ void print_unsigned(format_t format, va_list argv, size_t* len)
     char buf[32700];
 
     val = va_arg(argv, unsigned int);
-    format.len -= get_nbr_base(format, val, buf, "0123456789");
+    format.len -= get_unsigned_nbr_base(format, val, buf, "0123456789");
     if (format.left)
 	{
         ft_putstr(buf, len);

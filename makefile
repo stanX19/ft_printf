@@ -7,9 +7,9 @@ SRCS	=	$(addsuffix .c, \
 			printf read_format format_match) \
 		$(addprefix $(SRCDIR)$(FUNC)ft_, \
 			print_double print_long_double print_percent print_char print_int print_long_int print_long_long_int \
-			print_str print_unsigned print_pointer)\
+			print_str print_unsigned print_pointer print_hex_lower print_hex_upper)\
 		$(addprefix $(SRCDIR)$(SHARED)ft_, \
-			get_int get_double get_unsigned get_nbr_base)\
+			get_int get_double get_unsigned get_unsigned_nbr_base)\
 		$(addprefix $(SRCDIR)$(UTILS)ft_, \
 			strdup strlen strcpy strncpy putchar putnbr_base putstr))
 

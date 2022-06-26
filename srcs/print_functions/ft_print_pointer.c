@@ -3,7 +3,7 @@
 static size_t get_pointer(format_t format, long long unsigned int val, char* buf)
 {
     ft_strcpy(buf, "0x");
-    return get_nbr_base(format, val, buf + 2, "0123456789abcdef") + 2;
+    return get_unsigned_nbr_base(format, val, buf + 2, "0123456789abcdef") + 2;
 }
 
 static size_t get_null(char* buf)

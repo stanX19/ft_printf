@@ -10,12 +10,12 @@ static void	recur(long long unsigned int val, char*buf, size_t*idx, char*base)
 	buf[(*idx)++] = base[val % len];
 }
 
-size_t	get_nbr_base(format_t format, long long unsigned int val, char*buf, char*base)
+size_t	get_unsigned_nbr_base(format_t format, long long unsigned int val, char*buf, char*base)
 {
 	char base_str[21];
 	size_t	idx2;
 	size_t	idx;
-	
+
 	idx = 0;
 	idx2 = 0;
 	recur(val, base_str, &idx2, base);

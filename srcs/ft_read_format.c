@@ -24,6 +24,8 @@ static void format_init(char strs[F_COUNT][5], void (*funcs[F_COUNT])())
     assign(strs, funcs, "lli", print_long_int);
     assign(strs, funcs, "u", print_unsigned);
     assign(strs, funcs, "p", print_pointer);
+    assign(strs, funcs, "x", print_hex_lower);
+    assign(strs, funcs, "X", print_hex_upper);
 }
 
 funcptr match_function(char* format_str, size_t *idx){
@@ -63,10 +65,13 @@ static void read_format1(format_t* format, char* format_str, size_t *idx)
             format->left = 1;
         else if (format_str[(*idx)] == '#')
             format->hash = 1;
+        else if (format_str[(*idx)] == '0')
+            format->zero = 1;
         else
             return;
     }
 }
+
 format_t read_format(char* format_str, size_t *idx)
 {
     format_t format;
@@ -75,6 +80,8 @@ format_t read_format(char* format_str, size_t *idx)
     format.precicion = -1;
     format.positive = "";
     format.left = 0;
+    format.hash = 0;
+    format.zero = 0;
     (*idx) = -1;
     read_format1(&format, format_str, idx);
     while (format_str[(*idx)] && format_str[(*idx)] >= '0' && format_str[(*idx)] <= '9')
