@@ -82,15 +82,15 @@ format_t read_format(char* format_str, size_t *idx)
     format.left = 0;
     format.hash = 0;
     format.zero = 0;
-    (*idx) = -1;
+    *idx = -1;
     read_format1(&format, format_str, idx);
-    while (format_str[(*idx)] && format_str[(*idx)] >= '0' && format_str[(*idx)] <= '9')
+    while (format_str[*idx] && ft_isdigit(format_str[*idx]))
         format.len = format.len * 10 + format_str[(*idx)++] - 48;
-    if (format_str[(*idx)] && format_str[(*idx)] == '.')
+    if (format_str[*idx] && format_str[*idx] == '.')
     {
         (*idx)++;
         format.precicion = 0;
-        while (format_str[(*idx)] && format_str[(*idx)] >= '0' && format_str[(*idx)] <= '9')
+        while (format_str[*idx] && ft_isdigit(format_str[*idx]))
             format.precicion = format.precicion * 10 + format_str[(*idx)++] - 48;
     }
     format.func = match_function(format_str + *idx, idx);

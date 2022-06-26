@@ -22,6 +22,8 @@ char*		ft_strdup(const char* s);
 size_t		ft_strlen(const char* s);
 char*		ft_strcpy(char * dst, const char * src);
 char*		ft_strncpy(char* dst, char* src, size_t n);
+void*		ft_memmove(void* dst, const void* src, size_t len);
+int			ft_isdigit(int c);
 
 void 		print_double(format_t format, va_list argv, size_t* len);
 void 		print_long_double(format_t format, va_list argv, size_t* len);

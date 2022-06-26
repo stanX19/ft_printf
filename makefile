@@ -11,7 +11,7 @@ SRCS	=	$(addsuffix .c, \
 		$(addprefix $(SRCDIR)$(SHARED)ft_, \
 			get_int get_double get_unsigned get_unsigned_nbr_base format_zero)\
 		$(addprefix $(SRCDIR)$(UTILS)ft_, \
-			strdup strlen strcpy strncpy putchar putnbr_base putstr))
+			strdup strlen strcpy strncpy putchar putnbr_base putstr memmove isdigit))
 
 OBJS	=	$(subst .c,.o,$(SRCS))
 

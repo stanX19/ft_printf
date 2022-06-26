@@ -36,6 +36,8 @@ static inline void add_intiger(size_t* idx, char* buf, long long unsigned int va
 
 size_t get_double(format_t format, long double val, char* buf) {
     size_t idx;
+    char* temp_buf;
+    int i;
 
     idx = 0;
     if (val < 0)
@@ -50,6 +52,17 @@ size_t get_double(format_t format, long double val, char* buf) {
         format.precicion = 6;
     if (format.precicion)
         add_decimal(&idx, buf, val, format.precicion);
-    buf[idx] = 0;
-    return idx;
+    if (format.zero && (size_t)format.len > idx)
+    {
+        temp_buf = buf + !ft_isdigit(buf[0]);
+        format.len -= idx;
+        ft_memmove(temp_buf + format.len, temp_buf, idx);
+        i = 0;
+        while (i < format.len)
+            temp_buf[i++] = '0';
+    }
+    else
+        format.len = 0;
+    buf[idx + format.len] = 0;
+    return idx + format.len;
 }
