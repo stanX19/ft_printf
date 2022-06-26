@@ -5,10 +5,10 @@
 
 int main(){
     //char* s2 = 0;
-    int x = -1;
+    int x = 0;
     char* str;
 
-    str = "|%02d|\n";
+    str = "|%#x|\n";
     printf(str, x);
     ft_printf(str, x);
 }

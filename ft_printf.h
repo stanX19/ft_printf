@@ -40,6 +40,7 @@ size_t		get_int(format_t format, long long int nbr, char*buf);
 size_t		get_double(format_t format, long double val, char* buf);
 size_t		get_unsigned(format_t format, long long unsigned int nbr, char* buf);
 size_t		get_unsigned_nbr_base(format_t format, long long unsigned int val, char* buf, char* base);
+void		format_zero(format_t* format, long long int val);
 
 size_t		ft_printf(const char *str, ...);
 format_t	read_format(char* format_str, size_t*idx);

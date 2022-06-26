@@ -6,6 +6,8 @@ void print_int(format_t format, va_list argv, size_t* len)
     char buf[32700];
 
     val = va_arg(argv, int);
+    if (format.zero && format.precicion == -1)
+        format_zero(&format, val);
     format.len -= get_int(format, val, buf);
     if (format.left)
 	{

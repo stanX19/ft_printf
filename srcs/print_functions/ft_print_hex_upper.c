@@ -5,7 +5,7 @@ static size_t get_upper_hex(format_t format, unsigned int val, char* buf)
     char* base;
 
     base = "0123456789ABCDEF";
-    if (format.hash)
+    if (format.hash && val > 0)
     {
         ft_strcpy(buf, "0X");
         return get_unsigned_nbr_base(format, val, buf + 2, base) + 2;
@@ -19,6 +19,8 @@ void print_hex_upper(format_t format, va_list argv, size_t* len)
     char buf[32700];
 
     val = va_arg(argv, unsigned int);
+    if (format.zero && format.precicion == -1)
+        format_zero(&format, val);
     format.len -= get_upper_hex(format, val, buf);
     if (format.left)
 	{
