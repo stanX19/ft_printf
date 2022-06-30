@@ -1,59 +1,16 @@
 #include "ft_printf.h"
-#define F_COUNT 25
 
-static void assign(char strs[F_COUNT][5], void (*funcs[F_COUNT])(), char*str, funcptr func)
+static void default_format_value(format_t* format)
 {
-    static int idx;
-
-    if (idx >= F_COUNT)
-        return ;
-    ft_strcpy(strs[idx], str);
-    funcs[idx] = func;
-    idx++;
+    format->len = 0;
+    format->precicion = -1;
+    format->positive = "";
+    format->left = 0;
+    format->hash = 0;
+    format->zero = 0;
 }
 
-static void format_init(char strs[F_COUNT][5], void (*funcs[F_COUNT])())
-{
-    assign(strs, funcs, "c", print_char);
-    assign(strs, funcs, "s", print_str);
-    assign(strs, funcs, "f", print_double);
-    assign(strs, funcs, "Lf", print_long_double);
-    assign(strs, funcs, "d", print_int);
-    assign(strs, funcs, "i", print_int);
-    assign(strs, funcs, "li", print_long_int);
-    assign(strs, funcs, "lli", print_long_int);
-    assign(strs, funcs, "u", print_unsigned);
-    assign(strs, funcs, "p", print_pointer);
-    assign(strs, funcs, "x", print_hex_lower);
-    assign(strs, funcs, "X", print_hex_upper);
-}
-
-funcptr match_function(char* format_str, size_t *idx){
-    size_t      i;
-    size_t      len;
-    static char strs[F_COUNT][5];
-    static void (*funcs[F_COUNT])();
-
-    if (**strs == 0)
-        format_init(strs, funcs);
-    i = 0;
-    len = 0;
-    while (strs[i][0])
-    {
-        len = format_match(strs[i], format_str);
-        if (len > 0)
-        {
-            *idx += len;
-            return funcs[i];
-        }
-        i++;
-    }
-    if (*format_str == '%')
-        (*idx)++;
-    return print_percent;
-}
-
-static void read_format1(format_t* format, char* format_str, size_t *idx)
+static void read_format1(format_t* format, const char* format_str, size_t *idx)
 {
     while (format_str[++(*idx)])
     {
@@ -72,16 +29,11 @@ static void read_format1(format_t* format, char* format_str, size_t *idx)
     }
 }
 
-format_t read_format(char* format_str, size_t *idx)
+format_t read_format(const char* format_str, size_t *idx)
 {
     format_t format;
-    
-    format.len = 0;
-    format.precicion = -1;
-    format.positive = "";
-    format.left = 0;
-    format.hash = 0;
-    format.zero = 0;
+
+    default_format_value(&format);
     *idx = -1;
     read_format1(&format, format_str, idx);
     while (format_str[*idx] && ft_isdigit(format_str[*idx]))

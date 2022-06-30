@@ -4,19 +4,19 @@ UTILS	= utils/
 SHARED	= shared/
 SRCS	=	$(addsuffix .c, \
 		$(addprefix $(SRCDIR)ft_, \
-			printf read_format format_match) \
+			printf read_format match_function) \
 		$(addprefix $(SRCDIR)$(FUNC)ft_, \
 			print_double print_long_double print_percent print_char print_int print_long_int print_long_long_int \
-			print_str print_unsigned print_pointer print_hex_lower print_hex_upper)\
+			print_str print_unsigned print_pointer print_hex_lower print_hex_upper print_binary)\
 		$(addprefix $(SRCDIR)$(SHARED)ft_, \
 			get_int get_double get_unsigned get_unsigned_nbr_base format_zero)\
 		$(addprefix $(SRCDIR)$(UTILS)ft_, \
-			strdup strlen strcpy strncpy putchar putnbr_base putstr memmove isdigit))
+			strdup strlen strcpy strncpy putchar putstr memmove isdigit))
 
 OBJS	=	$(subst .c,.o,$(SRCS))
 
 CC			= 	gcc
-CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror#-fsanitize=address
 RM			=	rm -rf
 TESTDIR = printfTester
 TESTGIT = https://github.com/Tripouille/printfTester.git

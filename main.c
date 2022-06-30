@@ -5,10 +5,10 @@
 
 int main(){
     //char* s2 = 0;
-    long double x = 12.345;
+    long long unsigned x = 0xFFFFFFFFFFFFFFFF;
     char* str;
 
-    str = "|%+020.1Lf|\n";
-    printf(str, x);
+    str = "|%#.64b|\n";
+    //printf(str, x);
     ft_printf(str, x);
 }

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_putstr(char *str, size_t*len)
+void	ft_putstr(const char *str, size_t*len)
 {
 	if (!str)
 	{
