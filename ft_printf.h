@@ -32,6 +32,8 @@ void		print_int(format_t format, va_list argv, size_t* len);
 void		print_long_int(format_t format, va_list argv, size_t* len);
 void		print_long_long_int(format_t format, va_list argv, size_t* len);
 void		print_unsigned(format_t format, va_list argv, size_t* len);
+void		print_long_unsigned(format_t format, va_list argv, size_t* len);
+void		print_long_long_unsigned(format_t format, va_list argv, size_t* len);
 void		print_pointer(format_t format, va_list argv, size_t* len);
 void		print_hex_upper(format_t format, va_list argv, size_t* len);
 void		print_hex_lower(format_t format, va_list argv, size_t* len);

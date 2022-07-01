@@ -9,6 +9,6 @@ int main(){
     char* str;
 
     str = "|%#.64b|\n";
-    //printf(str, x);
+    printf(str, x);
     ft_printf(str, x);
 }

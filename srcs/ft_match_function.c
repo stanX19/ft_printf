@@ -53,6 +53,8 @@ funcptr match_function(const char* format_str, size_t* idx)
         {"li", print_long_int},
         {"lli", print_long_int},
         {"u", print_unsigned},
+        {"lu", print_long_unsigned},
+        {"llu", print_long_long_unsigned},
         {"p", print_pointer},
         {"x", print_hex_lower},
         {"X", print_hex_upper},
