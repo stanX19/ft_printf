@@ -2,13 +2,14 @@
 
 void	ft_putstr(const char *str, size_t*len)
 {
+	size_t idx;
+
 	if (!str)
 	{
 		ft_putstr("(null)", len);
 		return ;
 	}
-	while (*str)
-	{
-		ft_putchar(*(str++), len);
-	}
+	idx = ft_strlen(str);
+	*len += idx;
+	write(1, str, idx);
 }
