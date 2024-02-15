@@ -16,10 +16,10 @@
 int	main(void)
 {
 	// char* s2 = 0;
-	unsigned int x = 97;
+	double x = 97.855;
 	char *str;
 
-	str = "|%04u|\n";
+	str = "|%-0.2f|\n";
 	printf(str, x);
 	ft_printf(str, x);
 }
