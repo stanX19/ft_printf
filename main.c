@@ -1,14 +1,25 @@
-#include "ft_printf.h"
-#include <stdio.h>
 #include <limits.h>
 #include <stdint.h>
+#include <stdio.h>
+#include "ft_printf.h"
 
-int main(){
-    //char* s2 = 0;
-    long long unsigned x = 0xFFFFFFFFFFFFFFFF;
-    char* str;
+// typedef struct s_base
+// {
+// 	size_t		nbr;
+// 	const char	*str;
+// }	t_base;
 
-    str = "|%#.64b|\n";
-    printf(str, x);
-    ft_printf(str, x);
+// void	print_int(int val) {
+// 	printf("%i", val);
+// }
+
+int	main(void)
+{
+	// char* s2 = 0;
+	unsigned int x = 97;
+	char *str;
+
+	str = "|%04u|\n";
+	printf(str, x);
+	ft_printf(str, x);
 }
