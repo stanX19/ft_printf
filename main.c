@@ -16,10 +16,10 @@
 int	main(void)
 {
 	// char* s2 = 0;
-	double x = 97.855;
+	long long x = 9771203;
 	char *str;
 
-	str = "|%-0.2f|\n";
+	str = "|%.5f|\n";
 	printf(str, x);
 	ft_printf(str, x);
 }

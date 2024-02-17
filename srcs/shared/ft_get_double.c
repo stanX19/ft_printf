@@ -39,19 +39,25 @@ static inline void	add_decimal(int *idx, char *buf, long double val,
 		buf[(*idx)++] = '0';
 }
 
-static inline void	add_integer(int *idx, char *buf,
-		long long unsigned int val)
+static inline void	write_double(int *idx, char *buf,
+		long double val, int decimal)
 {
 	long long unsigned int	place;
+	long long unsigned int	digits;
 
 	place = 1;
-	while (place * 10 < val)
+	digits = (long long unsigned int)val;
+	if (!decimal)
+		digits += (((val - (int)val) * 10) >= 5);
+	while (place * 10 < digits)
 		place *= 10;
 	while (place > 0)
 	{
-		buf[(*idx)++] = (val / place) % 10 + 48;
+		buf[(*idx)++] = ((int)digits / place) % 10 + 48;
 		place /= 10;
 	}
+	if (decimal)
+		add_decimal(idx, buf, val, decimal);
 }
 
 static void	pad_with_zeros(int *idx, char *buf, int total_length)
@@ -83,11 +89,9 @@ size_t	get_double(t_format format, long double val, char *buf)
 	}
 	else if (format.positive[0])
 		buf[idx++] = format.positive[0];
-	add_integer(&idx, buf, val);
 	if (format.precicion == -1)
 		format.precicion = 6;
-	if (format.precicion)
-		add_decimal(&idx, buf, val, format.precicion);
+	write_double(&idx, buf, val, format.precicion);
 	if (format.zero && format.len > idx)
 		pad_with_zeros(&idx, buf, format.len);
 	buf[idx] = 0;
