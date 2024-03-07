@@ -16,10 +16,10 @@
 int	main(void)
 {
 	// char* s2 = 0;
-	long long x = 9771203;
+	char x = '0';
 	char *str;
 
-	str = "|%.5f|\n";
-	printf(str, x);
+	str = "%c";
+	// printf(str, x);
 	ft_printf(str, x);
 }

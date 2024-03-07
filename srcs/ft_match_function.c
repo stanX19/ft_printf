@@ -32,7 +32,7 @@ static t_fmt_func	iterate(const t_fdict *dict, const char *format_str,
 
 	i = 0;
 	len = 0;
-	while (dict[i].key[0])
+	while (dict[i].key)
 	{
 		len = format_cmp(dict[i].key, format_str);
 		if (len > 0)

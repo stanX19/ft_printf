@@ -3,49 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: shatan <shatan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:30:42 by stan              #+#    #+#             */
-/*   Updated: 2024/02/15 19:08:29 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/07 17:04:32 by shatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_private.h"
 
-static size_t	get_pointer(t_format format, long long unsigned int val,
+static size_t	get_pointer(long long unsigned int val,
 		char *buf)
 {
-	ft_strcpy(buf, "0x");
-	return (get_unsigned_nbr_base(format, val, buf + 2, "0123456789abcdef")
-		+ 2);
+	return (get_unsigned_nbr_base(val, buf, "0123456789abcdef"));
 }
 
-static size_t	get_null(char *buf)
-{
-	ft_strcpy(buf, "(nil)");
-	return (5);
-}
-
-void	print_pointer(t_format format, va_list argv, size_t *len)
+void	print_pointer(t_format format, va_list *argv, size_t *len)
 {
 	unsigned long long int	val;
-	char					buf[32700];
+	char					buf[21];
 
-	val = va_arg(argv, unsigned long int);
-	if (val)
-		format.len -= get_pointer(format, val, buf);
-	else
-		format.len -= get_null(buf);
-	if (format.left)
+	val = va_arg(*argv, unsigned long int);
+	if (format.precicion > 0)
 	{
-		ft_printf_putstr(buf, len);
-		while (format.len-- > 0)
-			ft_printf_putchar(' ', len);
+		format.zero = 1;
+		format.len = format.precicion;
+	}
+	format.len -= get_pointer(val, buf);
+	if (format.zero)
+	{
+		ft_printf_putstr("0x", len);
+		print_buf_with_pad_char(format, buf, '0', len);
 	}
 	else
 	{
-		while (format.len-- > 0)
-			ft_printf_putchar(' ', len);
-		ft_printf_putstr(buf, len);
+		ft_memmove(buf + 2, buf, sizeof(buf) - 2);
+		ft_memcpy(buf, "0x", 2);
+		print_buf_with_pad(format, buf, len);
 	}
 }

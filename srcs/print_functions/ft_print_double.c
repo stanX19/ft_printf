@@ -12,23 +12,12 @@
 
 #include "ft_printf_private.h"
 
-void	print_double(t_format format, va_list argv, size_t *len)
+void	print_double(t_format format, va_list *argv, size_t *len)
 {
 	double	val;
 	char	buf[100];
 
-	val = va_arg(argv, double);
+	val = va_arg(*argv, double);
 	format.len -= get_double(format, val, buf);
-	if (format.left)
-	{
-		ft_printf_putstr(buf, len);
-		while (format.len-- > 0)
-			ft_printf_putchar(' ', len);
-	}
-	else
-	{
-		while (format.len-- > 0)
-			ft_printf_putchar(' ', len);
-		ft_printf_putstr(buf, len);
-	}
+	print_buf_with_pad(format, buf, len);
 }

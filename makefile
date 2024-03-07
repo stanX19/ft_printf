@@ -11,7 +11,7 @@ SRCS	=	$(addsuffix .c, \
 			print_pointer print_hex_lower print_hex_upper print_binary\
 			printf_putstr printf_putchar)\
 		$(addprefix $(SRCDIR)/$(SHARED)/ft_, \
-			get_int get_double get_unsigned_nbr_base format_zero))
+			get_int get_double get_unsigned_nbr_base format_zero print_buf_with_pad))
 
 OBJDIR		= objs
 OBJS		= $(subst $(SRCDIR)/,$(OBJDIR)/,$(subst .c,.o,$(SRCS)))
@@ -19,6 +19,7 @@ OBJDIRS		= $(sort $(dir $(OBJS)))
 
 LIBFTDIR	= libft
 LIBFT		= $(LIBFTDIR)/libft.a
+LIB_OBJDIR	= $(OBJDIR)/$(LIBFTDIR)
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g3
@@ -34,21 +35,23 @@ UP			= \033[1A
 FLUSH		= \033[2K
 
 run: all
-	$(CC) $(CFLAGS) $(IFLAGS) main.c $(NAME) && ./a.out
+	$(CC) $(CFLAGS) $(IFLAGS) main.c $(NAME)
+	./a.out
 
 bonus: all
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	@ar rcsT $(NAME) $(LINKERS) $(OBJS)
+$(NAME): $(OBJDIRS) $(OBJS) $(LIBFT)
+	mkdir -p $(LIB_OBJDIR); cd $(LIB_OBJDIR); ar -x ../../$(LIBFT)
+	ar -rcs $(NAME) $(LIB_OBJDIR)/*.o $(OBJS)
 
 $(OBJDIRS):
 	mkdir -p $@
 	@echo "$(UP)$(FLUSH)$(UP)"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADERS) | $(OBJDIRS) $(LIBFT)
-	$(CC) $(CFLAGS) $(IFLAGS) $(LINKERS) -c $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(HEADERS) $(OBJDIRS) $(LIBFT)
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 	@echo "$(UP)$(FLUSH)$(UP)"
 
 $(LIBFT):
@@ -56,6 +59,7 @@ $(LIBFT):
 
 clean:
 	@$(RM) $(OBJS)
+	@$(RM) $(LIB_OBJDIR)
 	
 fclean:	clean
 	$(RM) $(NAME)

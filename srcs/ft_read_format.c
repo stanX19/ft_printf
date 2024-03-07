@@ -20,6 +20,7 @@ static void	init_format(t_format *format)
 	format->left = 0;
 	format->hash = 0;
 	format->zero = 0;
+	format->star = 0;
 }
 
 static void	read_format1(t_format *format, const char *format_str, size_t *idx)
@@ -41,7 +42,28 @@ static void	read_format1(t_format *format, const char *format_str, size_t *idx)
 	}
 }
 
-t_format	read_format(const char *format_str, size_t *idx)
+static int	read_int(const char *buf, size_t *idx)
+{
+	int	val;
+
+	val = 0;
+	while (buf[*idx] && ft_isdigit(buf[*idx]))
+	{
+		val = val * 10 + buf[(*idx)++] - '0';
+	}
+	return (val);
+}
+
+static void	read_if_asteric(char c, va_list *argv, int *val, size_t *idx)
+{
+	if (c == '*')
+	{
+		*val = va_arg(*argv, int);
+		(*idx)++;
+	}
+}
+
+t_format	read_format(const char *format_str, va_list *argv, size_t *idx)
 {
 	t_format	format;
 
@@ -49,18 +71,13 @@ t_format	read_format(const char *format_str, size_t *idx)
 	*idx = -1;
 	read_format1(&format, format_str, idx);
 	while (format_str[*idx] && ft_isdigit(format_str[*idx]))
-	{
 		format.len = format.len * 10 + format_str[(*idx)++] - '0';
-	}
+	read_if_asteric(format_str[*idx], argv, &format.len, idx);
 	if (format_str[*idx] && format_str[*idx] == '.')
 	{
 		(*idx)++;
-		format.precicion = 0;
-		while (format_str[*idx] && ft_isdigit(format_str[*idx]))
-		{
-			format.precicion = format.precicion * 10
-				+ format_str[(*idx)++] - '0';
-		}
+		format.precicion = read_int(format_str, idx);
+		read_if_asteric(format_str[*idx], argv, &format.precicion, idx);
 	}
 	format.func = match_function(format_str + *idx, idx);
 	return (format);
