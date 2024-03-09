@@ -38,8 +38,7 @@ run: all
 	$(CC) $(CFLAGS) $(IFLAGS) main.c $(NAME)
 	./a.out
 
-push:
-	@echo -n "Commit name: "; read name; make fclean; git add .; git commit -m "$$name"; git push
+
 bonus: all
 
 all: $(NAME)
@@ -64,16 +63,21 @@ clean:
 	@$(RM) $(LIB_OBJDIR)
 	
 fclean:	clean
-	$(RM) $(NAME)
-	$(RM) $(TESTDIR)
-	$(RM) ./a.out
-	make -C $(LIBFTDIR) fclean
-	$(RM) $(TESTDIR)
+	@$(RM) $(NAME)
+	@$(RM) $(TESTDIR)
+	@$(RM) ./a.out
+	@make -C $(LIBFTDIR) fclean
+	@$(RM) $(TESTDIR)
 
 re:	fclean $(NAME)
 
 test: $(TESTDIR)
 	cd $(TESTDIR) && make a
+
 $(TESTDIR):
 	git clone $(TESTGIT)
+
+push:
+	@echo -n "Commit name: "; read name; make fclean; git add .; git commit -m "$$name"; git push
+
 .PHONY:			all clean fclean re test run .c.o
