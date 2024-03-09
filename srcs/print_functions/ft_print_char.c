@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shatan <shatan@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:38:30 by stan              #+#    #+#             */
-/*   Updated: 2024/03/07 17:06:38 by shatan           ###   ########.fr       */
+/*   Updated: 2024/03/09 17:35:43 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,23 @@
 
 void	print_char(t_format format, va_list *argv, size_t *len)
 {
-	char	buf[2];
+	char	c;
 
-	buf[0] = va_arg(*argv, int);
-	buf[1] = '\0';
+	c = va_arg(*argv, int);
 	format.len -= 1;
-	print_buf_with_pad(format, buf, len);
+	if (format.zero)
+	{
+		ft_printf_putnchar('0', format.len, len);
+		ft_printf_putchar(c, len);
+	}
+	else if (format.minus)
+	{
+		ft_printf_putchar(c, len);
+		ft_printf_putnchar(' ', format.len, len);
+	}
+	else
+	{
+		ft_printf_putnchar(' ', format.len, len);
+		ft_printf_putchar(c, len);
+	}
 }

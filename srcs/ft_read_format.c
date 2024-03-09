@@ -17,7 +17,7 @@ static void	init_format(t_format *format)
 	format->len = 0;
 	format->precicion = -1;
 	format->positive = "";
-	format->left = 0;
+	format->minus = 0;
 	format->hash = 0;
 	format->zero = 0;
 	format->star = 0;
@@ -32,7 +32,7 @@ static void	read_format1(t_format *format, const char *format_str, size_t *idx)
 		else if (format_str[(*idx)] == ' ')
 			format->positive = " ";
 		else if (format_str[(*idx)] == '-')
-			format->left = 1;
+			format->minus = 1;
 		else if (format_str[(*idx)] == '#')
 			format->hash = 1;
 		else if (format_str[(*idx)] == '0')

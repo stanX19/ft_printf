@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shatan <shatan@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:37:02 by stan              #+#    #+#             */
-/*   Updated: 2024/03/07 17:03:00 by shatan           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:00:05 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	print_int(t_format format, va_list *argv, size_t *len)
 	char	buf[25];
 
 	val = va_arg(*argv, int);
-	if (format.zero && format.precicion == -1)
-		format_zero(&format, val);
-	format.len -= get_int(format, val, buf);
-	print_buf_with_pad(format, buf, len);
+	get_int(&format, val, buf);
+	print_buf_with_int_fmt(format, format.positive, buf, len);
 }

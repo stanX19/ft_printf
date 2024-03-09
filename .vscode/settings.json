@@ -1,5 +1,11 @@
 {
 	"files.associations": {
-		"*.h": "c"
+		"libft.h": "c",
+		"ft_printf.h": "c",
+		"stdarg.h": "c",
+		"stdint.h": "c",
+		"limits": "c",
+		"ft_printf_private.h": "c",
+		"stdio.h": "c"
 	}
 }
