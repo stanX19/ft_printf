@@ -38,6 +38,8 @@ run: all
 	$(CC) $(CFLAGS) $(IFLAGS) main.c $(NAME)
 	./a.out
 
+push:
+	@echo -n "Commit name: "; read name; make fclean; git add .; git commit -m "$$name"; git push
 bonus: all
 
 all: $(NAME)

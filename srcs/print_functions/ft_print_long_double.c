@@ -18,6 +18,6 @@ void	print_long_double(t_format format, va_list *argv, size_t *len)
 	char		buf[100];
 
 	val = va_arg(*argv, long double);
-	format.len -= get_double(format, val, buf);
-	print_buf_with_pad(format, buf, len);
+	get_double(&format, val, buf);
+	print_buf_with_double_fmt(format, buf, len);
 }

@@ -6,7 +6,7 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:03:51 by shatan            #+#    #+#             */
-/*   Updated: 2024/03/09 18:21:08 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/09 23:37:58 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ void	print_buf_with_int_fmt(t_format fmt, const char *prefix, const char *buf, s
 	{
 		ft_printf_putnchar(' ', fmt.len, len);
 		print_buf_with_middle_zeros(prefix, fmt.precicion, buf, len);
+	}
+}
+
+void	print_buf_with_double_fmt(t_format fmt, const char *buf, size_t *len)
+{
+	int	buflen;
+	
+	buflen = ft_strlen(buf);
+	fmt.precicion = (fmt.precicion >= 0) * fmt.precicion;
+	fmt.len -= fmt.precicion + buflen;
+	if (fmt.minus)
+	{
+		ft_printf_putstr(buf, len);
+		ft_printf_putnchar('0', fmt.precicion, len);
+		ft_printf_putnchar(' ', fmt.len, len);
+	}
+	else
+	{
+		ft_printf_putnchar(' ', fmt.len, len);
+		ft_printf_putstr(buf, len);
+		ft_printf_putnchar('0', fmt.precicion, len);
 	}
 }
 
