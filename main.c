@@ -15,12 +15,12 @@
 
 int	main(void)
 {
-	// char* s2 = 0;
-	char *x = "what";
-	char *str  = "|%.1s|\n";
+	// char* x = 0;
+	long int x = 3;
+	char *str  = "|%-100.*b|\n";
 
-	size_t a = printf(str, x);
-	size_t b = ft_printf(str, x);
+	size_t a = 1;//printf(str, x, x);
+	size_t b = ft_printf(str, x, x);
 
 	printf("\nReturn %lu %lu\n", a, b);
 }

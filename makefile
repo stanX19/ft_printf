@@ -11,7 +11,7 @@ SRCS	=	$(addsuffix .c, \
 			print_pointer print_hex_lower print_hex_upper print_binary\
 			printf_putstr printf_putchar)\
 		$(addprefix $(SRCDIR)/$(SHARED)/ft_, \
-			get_int get_double get_unsigned_nbr_base format_zero print_buf_with_pad print_buf_with_fmt))
+			get_int get_double get_unsigned_nbr_base print_buf_with_fmt))
 
 OBJDIR		= objs
 OBJS		= $(subst $(SRCDIR)/,$(OBJDIR)/,$(subst .c,.o,$(SRCS)))

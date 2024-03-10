@@ -6,7 +6,7 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:25:17 by stan              #+#    #+#             */
-/*   Updated: 2024/03/10 12:57:02 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/10 13:37:25 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	get_int(t_format *format, long long int nbr, char *buf)
 	if (nbr < 0)
 	{
 		format->prefix = "-";
-		format->precicion--;
+		// format->precicion--;
 		val = -nbr;
 	}
 	recur(val, buf, &idx);
