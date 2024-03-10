@@ -30,8 +30,6 @@ static void	read_format1(t_format *format, const char *format_str, size_t *idx)
 			format->prefix = "+";
 		else if (format_str[(*idx)] == ' ')
 			format->prefix = " ";
-		else if (format_str[(*idx)] == '-')
-			format->left = 1;
 		else if (format_str[(*idx)] == '#')
 			format->hash = 1;
 		else if (format_str[(*idx)] == '0')
@@ -44,13 +42,20 @@ static void	read_format1(t_format *format, const char *format_str, size_t *idx)
 static int	read_int(const char *buf, size_t *idx)
 {
 	int	val;
+	int	sign;
 
 	val = 0;
+	sign = 1;
+	if (buf[*idx] == '-')
+	{
+		(*idx)++;
+		sign = -1;
+	}
 	while (buf[*idx] && ft_isdigit(buf[*idx]))
 	{
 		val = val * 10 + buf[(*idx)++] - '0';
 	}
-	return (val);
+	return (val * sign);
 }
 
 static void	read_if_asteric(char c, va_list *argv, int *val, size_t *idx)
@@ -69,9 +74,13 @@ t_format	read_format(const char *format_str, va_list *argv, size_t *idx)
 	init_format(&format);
 	*idx = -1;
 	read_format1(&format, format_str, idx);
-	while (format_str[*idx] && ft_isdigit(format_str[*idx]))
-		format.len = format.len * 10 + format_str[(*idx)++] - '0';
+	format.len = read_int(format_str, idx);
 	read_if_asteric(format_str[*idx], argv, &format.len, idx);
+	if (format.len < 0)
+	{
+		format.left = 1;
+		format.len = -format.len;
+	}
 	if (format_str[*idx] && format_str[*idx] == '.')
 	{
 		(*idx)++;
