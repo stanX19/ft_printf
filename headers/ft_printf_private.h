@@ -21,13 +21,12 @@
 
 typedef struct s_format
 {
-	char	*positive;
+	char	*prefix;
 	int		len;
 	int		precicion;
-	char	minus;
+	char	left;
 	char	hash;
 	char	zero;
-	char	star;
 	void	(*func)(struct s_format, va_list *, size_t *);
 }	t_format;
 

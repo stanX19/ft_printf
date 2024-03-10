@@ -66,10 +66,10 @@ size_t	get_double(t_format *fmt, long double val, char *buf)
 	if (val < 0)
 	{
 		val = -val;
-		fmt->positive = "-";
+		fmt->prefix = "-";
 	}
-	else if (fmt->positive[0])
-		buf[idx++] = fmt->positive[0];
+	else if (fmt->prefix[0])
+		buf[idx++] = fmt->prefix[0];
 	if (fmt->precicion == -1)
 		fmt->precicion = 6;
 	write_double(&idx, buf, val, &fmt->precicion);

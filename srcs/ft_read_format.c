@@ -16,11 +16,10 @@ static void	init_format(t_format *format)
 {
 	format->len = 0;
 	format->precicion = -1;
-	format->positive = "";
-	format->minus = 0;
+	format->prefix = "";
+	format->left = 0;
 	format->hash = 0;
 	format->zero = 0;
-	format->star = 0;
 }
 
 static void	read_format1(t_format *format, const char *format_str, size_t *idx)
@@ -28,11 +27,11 @@ static void	read_format1(t_format *format, const char *format_str, size_t *idx)
 	while (format_str[++(*idx)])
 	{
 		if (format_str[(*idx)] == '+')
-			format->positive = "+";
+			format->prefix = "+";
 		else if (format_str[(*idx)] == ' ')
-			format->positive = " ";
+			format->prefix = " ";
 		else if (format_str[(*idx)] == '-')
-			format->minus = 1;
+			format->left = 1;
 		else if (format_str[(*idx)] == '#')
 			format->hash = 1;
 		else if (format_str[(*idx)] == '0')

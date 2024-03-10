@@ -6,7 +6,7 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:38:30 by stan              #+#    #+#             */
-/*   Updated: 2024/03/09 17:35:43 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/10 12:57:41 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_char(t_format format, va_list *argv, size_t *len)
 		ft_printf_putnchar('0', format.len, len);
 		ft_printf_putchar(c, len);
 	}
-	else if (format.minus)
+	else if (format.left)
 	{
 		ft_printf_putchar(c, len);
 		ft_printf_putnchar(' ', format.len, len);
