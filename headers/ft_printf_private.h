@@ -69,8 +69,6 @@ size_t		get_int(t_format *format, long long int nbr, char *buf);
 size_t		get_double(t_format *format, long double val, char *buf);
 size_t		get_unsigned_nbr_base(long long unsigned int val,
 				char *buf, const char *base);
-void		print_buf_with_middle_zeros(const char *prefix, int pad_len,
-				const char *suffix, size_t *len);
 void		print_buf_with_int_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_with_double_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_with_str_fmt(t_format fmt, const char *buf, size_t *len);
