@@ -6,13 +6,14 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:03:51 by shatan            #+#    #+#             */
-/*   Updated: 2024/03/10 14:31:38 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/11 13:40:57 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_private.h"
 
-static void	print_buf_with_middle_zeros(const char *prefix, int pad_len, const char *suffix, size_t *len)
+static void	print_buf_with_middle_zeros(const char *prefix, int pad_len,
+	const char *suffix, size_t *len)
 {
 	ft_printf_putstr(prefix, len);
 	ft_printf_putnchar('0', pad_len, len);
@@ -26,8 +27,8 @@ static void	print_buf_with_middle_zeros(const char *prefix, int pad_len, const c
 static void	preprocess_int_format(t_format *fmt, const char *buf)
 {
 	int	buflen;
-	int prefix_len;
-	
+	int	prefix_len;
+
 	buflen = ft_strlen(buf);
 	prefix_len = ft_strlen(fmt->prefix);
 	if (fmt->zero && fmt->precicion == -1)
@@ -42,7 +43,7 @@ static void	preprocess_int_format(t_format *fmt, const char *buf)
 	fmt->len -= prefix_len + fmt->precicion + buflen;
 }
 
-void	print_buf_with_int_fmt(t_format fmt, const char *buf, size_t *len)
+void	print_buf_int_fmt(t_format fmt, const char *buf, size_t *len)
 {
 	preprocess_int_format(&fmt, buf);
 	if (fmt.left)

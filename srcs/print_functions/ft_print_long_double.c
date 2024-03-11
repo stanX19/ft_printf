@@ -19,5 +19,5 @@ void	print_long_double(t_format format, va_list *argv, size_t *len)
 
 	val = va_arg(*argv, long double);
 	get_double(&format, val, buf);
-	print_buf_with_double_fmt(format, buf, len);
+	print_buf_double_fmt(format, buf, len);
 }

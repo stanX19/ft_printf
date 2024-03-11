@@ -6,7 +6,7 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:30:17 by stan              #+#    #+#             */
-/*   Updated: 2024/03/09 17:10:29 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/11 13:41:12 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	print_str(t_format format, va_list *argv, size_t *len)
 	src = va_arg(*argv, char *);
 	if (!src)
 		src = "(null)";
-	print_buf_with_str_fmt(format, src, len);
+	print_buf_str_fmt(format, src, len);
 }
