@@ -6,6 +6,7 @@
 		"stdint.h": "c",
 		"limits": "c",
 		"ft_printf_private.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"random": "c"
 	}
 }

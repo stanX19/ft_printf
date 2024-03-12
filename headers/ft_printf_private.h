@@ -73,6 +73,8 @@ void		print_buf_int_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_double_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_str_fmt(t_format fmt, const char *buf, size_t *len);
 
+int			ft_abs(int nb);
+
 size_t		ft_printf(const char *str, ...);
 t_format	read_format(const char *format_str, va_list *argv, size_t *idx);
 t_fmt_func	match_function(const char *format_str, size_t *idx);

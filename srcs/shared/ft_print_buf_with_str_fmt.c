@@ -6,7 +6,7 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:03:51 by shatan            #+#    #+#             */
-/*   Updated: 2024/03/11 13:41:12 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/12 15:54:06 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	preprocess_str_fmt(t_format *fmt, const char *buf)
 	int	buflen;
 
 	buflen = ft_strlen(buf);
-	if (fmt->precicion == -1 || fmt->precicion > buflen)
+	if (fmt->precicion < 0 || fmt->precicion > buflen)
 		fmt->precicion = buflen;
 	fmt->len -= fmt->precicion;
 }

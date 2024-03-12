@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_get_double.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2024/02/15 18:26:20 by stan              #+#    #+#             */
-/*   Updated: 2024/02/15 18:26:20 by stan             ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/12 15:31:45 by stan              #+#    #+#             */
+/*   Updated: 2024/03/12 15:31:45 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +27,15 @@ static inline void	add_decimal(int *idx, char *buf, long double val,
 	if (store % 10 > 4)
 		store += 10;
 	buf[(*idx)++] = '.';
-	while (*decimal-- > 0 && place > 9)
+	while ((*decimal)-- > 0 && place > 9)
 	{
 		place /= 10;
 		buf[(*idx)++] = (store / place) % 10 + 48;
 	}
 }
 
-static inline void	write_double(int *idx, char *buf,
-		long double val, int *decimal)
+static inline void	write_double(int *idx, char *buf, long double val,
+		int *decimal)
 {
 	long long unsigned int	place;
 	long long unsigned int	digits;
@@ -70,7 +67,7 @@ size_t	get_double(t_format *fmt, long double val, char *buf)
 	}
 	else if (fmt->prefix[0])
 		buf[idx++] = fmt->prefix[0];
-	if (fmt->precicion == -1)
+	if (fmt->precicion < 0)
 		fmt->precicion = 6;
 	write_double(&idx, buf, val, &fmt->precicion);
 	buf[idx] = 0;

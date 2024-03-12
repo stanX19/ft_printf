@@ -12,6 +12,7 @@
 
 #include "ft_printf_private.h"
 
+// format.precicion < 0 means undefined
 static void	init_format(t_format *format)
 {
 	format->len = 0;
@@ -22,7 +23,7 @@ static void	init_format(t_format *format)
 	format->zero = 0;
 }
 
-static void	read_format1(t_format *format, const char *format_str, size_t *idx)
+static void	match_flags(t_format *format, const char *format_str, size_t *idx)
 {
 	while (format_str[++(*idx)])
 	{
@@ -58,9 +59,10 @@ static int	read_int(const char *buf, size_t *idx)
 	return (val * sign);
 }
 
-static void	read_if_asteric(char c, va_list *argv, int *val, size_t *idx)
+static void	read_if_asteric(const char *format_str, int *val,
+	size_t *idx, va_list *argv)
 {
-	if (c == '*')
+	if (format_str[*idx] == '*')
 	{
 		*val = va_arg(*argv, int);
 		(*idx)++;
@@ -73,9 +75,9 @@ t_format	read_format(const char *format_str, va_list *argv, size_t *idx)
 
 	init_format(&format);
 	*idx = -1;
-	read_format1(&format, format_str, idx);
+	match_flags(&format, format_str, idx);
 	format.len = read_int(format_str, idx);
-	read_if_asteric(format_str[*idx], argv, &format.len, idx);
+	read_if_asteric(format_str, &format.len, idx, argv);
 	if (format.len < 0)
 	{
 		format.left = 1;
@@ -85,7 +87,7 @@ t_format	read_format(const char *format_str, va_list *argv, size_t *idx)
 	{
 		(*idx)++;
 		format.precicion = read_int(format_str, idx);
-		read_if_asteric(format_str[*idx], argv, &format.precicion, idx);
+		read_if_asteric(format_str, &format.precicion, idx, argv);
 	}
 	format.func = match_function(format_str + *idx, idx);
 	return (format);

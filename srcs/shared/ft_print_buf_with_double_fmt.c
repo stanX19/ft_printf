@@ -6,7 +6,7 @@
 /*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:03:51 by shatan            #+#    #+#             */
-/*   Updated: 2024/03/11 13:41:05 by stan             ###   ########.fr       */
+/*   Updated: 2024/03/12 15:45:55 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 // fmt.precicion cannot be negative
 static void	preprocess_double_fmt(t_format *fmt, const char *buf)
 {
-	int	buflen;
-
-	buflen = ft_strlen(buf);
-	fmt->precicion = (fmt->precicion >= 0) * fmt->precicion;
-	fmt->len -= fmt->precicion + buflen;
+	fmt->precicion *= (fmt->precicion > 0);
+	fmt->len -= fmt->precicion + ft_strlen(buf) + ft_strlen(fmt->prefix);
 }
 
 void	print_buf_double_fmt(t_format fmt, const char *buf, size_t *len)
@@ -30,6 +27,7 @@ void	print_buf_double_fmt(t_format fmt, const char *buf, size_t *len)
 	preprocess_double_fmt(&fmt, buf);
 	if (fmt.left)
 	{
+		ft_printf_putstr(fmt.prefix, len);
 		ft_printf_putstr(buf, len);
 		ft_printf_putnchar('0', fmt.precicion, len);
 		ft_printf_putnchar(' ', fmt.len, len);
@@ -37,6 +35,7 @@ void	print_buf_double_fmt(t_format fmt, const char *buf, size_t *len)
 	else
 	{
 		ft_printf_putnchar(' ', fmt.len, len);
+		ft_printf_putstr(fmt.prefix, len);
 		ft_printf_putstr(buf, len);
 		ft_printf_putnchar('0', fmt.precicion, len);
 	}
