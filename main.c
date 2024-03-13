@@ -16,11 +16,12 @@
 int	main(void)
 {
 	//char* x = 0;
-	long double x = -3123;
-	char *str  = "|%-100.*Lf|\n";
+	int x;
+	char *str  = "|val = %i, binary = %.32b|\n";
 
-	size_t a = printf(str, -100, x);
-	size_t b = ft_printf(str, -100, x);
+	ft_memset(&x, 1, sizeof(x));
+	size_t a = 1;//printf(str, -100, x);
+	size_t b = ft_printf(str, x, x);
 
 	printf("\nReturn %lu %lu\n", a, b);
 }
