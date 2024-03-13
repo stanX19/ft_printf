@@ -20,7 +20,6 @@ OBJDIRS		= $(sort $(dir $(OBJS)))
 
 LIBFTDIR	= libft
 LIBFT		= $(LIBFTDIR)/libft.a
-LIB_OBJDIR	= $(OBJDIR)/$(LIBFTDIR)
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g3
@@ -45,8 +44,8 @@ bonus: all
 all: $(NAME)
 
 $(NAME): $(OBJDIRS) $(OBJS) $(LIBFT)
-	mkdir -p $(LIB_OBJDIR); cd $(LIB_OBJDIR); ar -x ../../$(LIBFT)
-	ar -rcs $(NAME) $(LIB_OBJDIR)/*.o $(OBJS)
+	cp $(LIBFT) $(NAME)
+	ar -rcs $(NAME) $(OBJS)
 
 $(OBJDIRS):
 	mkdir -p $@
@@ -68,7 +67,6 @@ fclean:	clean
 	@$(RM) $(TESTDIR)
 	@$(RM) ./a.out
 	@make -C $(LIBFTDIR) fclean
-	@$(RM) $(TESTDIR)
 
 re:	fclean $(NAME)
 
