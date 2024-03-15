@@ -33,6 +33,8 @@ static void	match_flags(t_format *format, const char *format_str, size_t *idx)
 			format->prefix = " ";
 		else if (format_str[(*idx)] == '#')
 			format->hash = 1;
+		else if (format_str[(*idx)] == '-')
+			format->left = 1;
 		else if (format_str[(*idx)] == '0')
 			format->zero = 1;
 		else

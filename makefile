@@ -5,12 +5,12 @@ SHARED	= shared
 SRCS	=	$(addsuffix .c, \
 		$(addprefix $(SRCDIR)/ft_, \
 			printf read_format match_function) \
-		$(addprefix $(SRCDIR)/$(FUNC)/ft_, \
-			print_double print_long_double print_percent print_char print_int print_long_int print_long_long_int \
-			print_str print_unsigned print_long_unsigned print_long_long_unsigned\
-			print_pointer print_hex_lower print_hex_upper print_binary\
-			printf_putstr printf_putchar)\
+		$(addprefix $(SRCDIR)/$(FUNC)/ft_print_, \
+			double long_double percent char int long_int long_long_int \
+			str unsigned long_unsigned long_long_unsigned\
+			pointer hex_lower hex_upper binary)\
 		$(addprefix $(SRCDIR)/$(SHARED)/ft_, \
+			printf_putstr printf_putchar\
 			get_int get_double get_unsigned_nbr_base print_buf_with_int_fmt print_buf_with_str_fmt\
 			print_buf_with_double_fmt))
 
@@ -22,7 +22,7 @@ LIBFTDIR	= libft
 LIBFT		= $(LIBFTDIR)/libft.a
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g3
 IFLAGS		= -I. -I./headers -I$(LIBFTDIR)
 LINKERS		= $(LIBFT)
 
@@ -59,8 +59,7 @@ $(LIBFT):
 	make -C $(LIBFTDIR) all
 
 clean:
-	@$(RM) $(OBJS)
-	@$(RM) $(LIB_OBJDIR)
+	@$(RM) $(OBJDIR)*.o
 	
 fclean:	clean
 	@$(RM) $(NAME)

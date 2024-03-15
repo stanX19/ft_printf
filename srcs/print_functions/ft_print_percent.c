@@ -6,7 +6,7 @@
 /*   By: shatan <shatan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:31:24 by stan              #+#    #+#             */
-/*   Updated: 2024/03/07 16:56:16 by shatan           ###   ########.fr       */
+/*   Updated: 2024/03/15 18:10:21 by shatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	print_percent(t_format format, va_list *argv, size_t *idx)
 {
 	(void)argv;
-	(void)format;
-	ft_printf_putchar('%', idx);
+	format.precicion = -1;
+	format.prefix = "";
+	print_buf_int_fmt(format, "%", idx);
 }

@@ -19,6 +19,12 @@
 # include <unistd.h>
 # define F_COUNT 25
 
+# ifdef __APPLE__
+#  define NULLSTR "0x0"
+# else 
+#  define NULLSTR "(nil)"
+# endif
+
 typedef struct s_format
 {
 	char	*prefix;
@@ -72,8 +78,6 @@ size_t		get_unsigned_nbr_base(long long unsigned int val,
 void		print_buf_int_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_double_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_str_fmt(t_format fmt, const char *buf, size_t *len);
-
-int			ft_abs(int nb);
 
 size_t		ft_printf(const char *str, ...);
 t_format	read_format(const char *format_str, va_list *argv, size_t *idx);

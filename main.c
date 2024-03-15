@@ -16,11 +16,11 @@
 int	main(void)
 {
 	//char* x = "LOL";
-	int x = 12345;
-	char *str  = "|%*.10i|\n";
+	int x = 20;
+	char *str  = "[%+5.3%]\n";
 
-	size_t a = printf(str, -2, x);
-	size_t b = ft_printf(str, -2, x);
+	size_t a = printf(str, x);
+	size_t b = ft_printf(str, x);
 
 	printf("\nReturn %lu %lu\n", a, b);
 }
