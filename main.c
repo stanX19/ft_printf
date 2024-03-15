@@ -15,13 +15,12 @@
 
 int	main(void)
 {
-	//char* x = 0;
-	int x;
-	char *str  = "|val = %i, binary = %.32b|\n";
+	//char* x = "LOL";
+	int x = 12345;
+	char *str  = "|%*.10i|\n";
 
-	ft_memset(&x, 1, sizeof(x));
-	size_t a = 1;//printf(str, -100, x);
-	size_t b = ft_printf(str, x, x);
+	size_t a = printf(str, -2, x);
+	size_t b = ft_printf(str, -2, x);
 
 	printf("\nReturn %lu %lu\n", a, b);
 }
