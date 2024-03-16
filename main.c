@@ -16,8 +16,8 @@
 int	main(void)
 {
 	//char* x = "LOL";
-	int x = 20;
-	char *str  = "[%|  |%]\n";
+	unsigned long long int x = 10000;
+	char *str  = "[%d]\n";
 
 	size_t a = printf(str, x);
 	size_t b = ft_printf(str, x);
