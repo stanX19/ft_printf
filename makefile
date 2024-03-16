@@ -76,6 +76,7 @@ $(TESTDIR):
 	git clone $(TESTGIT)
 
 push:
-	@echo -n "Commit name: "; read name; make fclean; git add .; git commit -m "$$name"; git push
+	@echo -n "Commit name: "; read name; make fclean;\
+	git add .; git commit -m "$$name"; git push;\
 
 .PHONY:			all clean fclean re test run .c.o
