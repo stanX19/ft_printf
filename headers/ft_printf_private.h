@@ -20,9 +20,9 @@
 # define F_COUNT 25
 
 # ifdef __APPLE__
-#  define NULLSTR "0x0"
-# else 
-#  define NULLSTR "(nil)"
+#  define IS_APPLE 1
+# else
+#  define IS_APPLE 0
 # endif
 
 typedef struct s_format
@@ -50,10 +50,6 @@ typedef struct s_fdict
 	t_fmt_func	func;
 }	t_fdict;
 
-void		ft_printf_putchar(char c, size_t *len);
-void		ft_printf_putnchar(char c, int n, size_t *len);
-void		ft_printf_putstr(const char *str, size_t *len);
-void		ft_printf_putnstr(const char *str, int n, size_t *len);
 void		print_double(t_format format, va_list *argv, size_t *len);
 void		print_long_double(t_format format, va_list *argv, size_t *len);
 void		print_char(t_format format, va_list *argv, size_t *len);
@@ -78,6 +74,10 @@ size_t		get_unsigned_nbr_base(long long unsigned int val,
 void		print_buf_int_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_double_fmt(t_format fmt, const char *buf, size_t *len);
 void		print_buf_str_fmt(t_format fmt, const char *buf, size_t *len);
+void		ft_printf_putchar(char c, size_t *len);
+void		ft_printf_putnchar(char c, int n, size_t *len);
+void		ft_printf_putstr(const char *str, size_t *len);
+void		ft_printf_putnstr(const char *str, int n, size_t *len);
 
 size_t		ft_printf(const char *str, ...);
 t_format	read_format(const char *format_str, va_list *argv, size_t *idx);

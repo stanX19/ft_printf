@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shatan <shatan@student.42kl.edu.my>        +#+  +:+       +#+        */
+/*   By: stan <shatan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:30:42 by stan              #+#    #+#             */
-/*   Updated: 2024/03/15 17:42:11 by shatan           ###   ########.fr       */
+/*   Updated: 2024/03/16 19:26:22 by stan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	print_pointer(t_format format, va_list *argv, size_t *len)
 		format.prefix = "0x";
 		get_unsigned_nbr_base(val, buf, "0123456789abcdef");
 	}
+	else if (IS_APPLE)
+		ft_strlcpy(buf, "0x0", sizeof(buf));
 	else
-		ft_strlcpy(buf, NULLSTR, sizeof(buf));
+		ft_strlcpy(buf, "(nil)", sizeof(buf));
 	print_buf_int_fmt(format, buf, len);
 }

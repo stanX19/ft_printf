@@ -44,6 +44,8 @@ static t_fmt_func	iterate(const t_fdict *dict, const char *format_str,
 	}
 	if (*format_str == '%')
 		(*idx)++;
+	else if (!IS_APPLE)
+		(*idx) = 0;
 	return (print_percent);
 }
 

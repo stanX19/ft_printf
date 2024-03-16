@@ -17,7 +17,7 @@ int	main(void)
 {
 	//char* x = "LOL";
 	int x = 20;
-	char *str  = "[%+5.3%]\n";
+	char *str  = "[%|  |%]\n";
 
 	size_t a = printf(str, x);
 	size_t b = ft_printf(str, x);
