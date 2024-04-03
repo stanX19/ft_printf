@@ -59,7 +59,7 @@ $(LIBFT):
 	make -C $(LIBFTDIR) all
 
 clean:
-	@$(RM) $(OBJDIR)*.o
+	@$(RM) $(OBJS)
 	
 fclean:	clean
 	@$(RM) $(NAME)

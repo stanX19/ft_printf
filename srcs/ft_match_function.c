@@ -24,7 +24,7 @@ static int	format_cmp(const char *src, const char *target)
 	return (0);
 }
 
-static t_fmt_func	iterate(const t_fdict *dict, const char *format_str,
+static t_fmt_func	iterate(const t_pair *dict, const char *format_str,
 		size_t *idx)
 {
 	size_t	i;
@@ -42,16 +42,15 @@ static t_fmt_func	iterate(const t_fdict *dict, const char *format_str,
 		}
 		i++;
 	}
-	if (*format_str == '%')
-		(*idx)++;
-	else if (!IS_APPLE)
-		(*idx) = 0;
+	if (IS_APPLE)
+		return (NULL);
+	(*idx) = 0;
 	return (print_percent);
 }
 
 t_fmt_func	match_function(const char *format_str, size_t *idx)
 {
-	static t_fdict	dict[] = {
+	static t_pair	dict[] = {
 	{"c", print_char},
 	{"s", print_str},
 	{"f", print_double},
@@ -67,6 +66,8 @@ t_fmt_func	match_function(const char *format_str, size_t *idx)
 	{"x", print_hex_lower},
 	{"X", print_hex_upper},
 	{"b", print_binary},
+	{"%", print_percent},
+	{NULL, NULL}
 	};
 
 	return (iterate(dict, format_str, idx));

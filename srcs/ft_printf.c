@@ -18,7 +18,8 @@ static size_t	print_format(char *format_str, va_list *argv, size_t *len)
 	t_format	format;
 
 	format = read_format(format_str, argv, &idx);
-	format.func(format, argv, len);
+	if (format.func)
+		format.func(format, argv, len);
 	return (idx);
 }
 

@@ -44,11 +44,11 @@ typedef struct s_base
 	const char	*str;
 }	t_base;
 
-typedef struct s_fdict
+typedef struct s_pair
 {
 	char		*key;
 	t_fmt_func	func;
-}	t_fdict;
+}	t_pair;
 
 void		print_double(t_format format, va_list *argv, size_t *len);
 void		print_long_double(t_format format, va_list *argv, size_t *len);
