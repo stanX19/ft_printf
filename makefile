@@ -34,11 +34,6 @@ NAME		= libftprintf.a
 UP			= \033[1A
 FLUSH		= \033[2K
 
-run: all
-	$(CC) $(CFLAGS) $(IFLAGS) main.c $(NAME)
-	./a.out
-
-
 bonus: all
 
 all: $(NAME)
